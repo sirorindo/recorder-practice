@@ -1,0 +1,329 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>リコーダー れんしゅう パフ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap">
+<style>
+/* Layout: one-column practice bench; tab bar on top, big recorder diagram as the centrepiece. */
+:root{
+  --bg:#f2f5f4; --panel:#ffffff; --ink:#1d2b2a; --sub:#5b6d6b; --line:#d5dedc;
+  --accent:#0f8f7e; --accent-ink:#ffffff; --warm:#e8742f; --good:#2e8b3d; --bad:#c0392b;
+  --wood:#e9d3ae; --hole:#1d2b2a;
+  --f-ui:'Zen Maru Gothic','Hiragino Maru Gothic ProN','Yu Gothic',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121a19; --panel:#1b2625; --ink:#e8f1ef; --sub:#9db2af; --line:#33423f;
+  --accent:#3cc4af; --accent-ink:#06201c; --warm:#f09255; --good:#6fcf7e; --bad:#ff8a7a;
+  --wood:#5a4a30; --hole:#e8f1ef; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121a19; --panel:#1b2625; --ink:#e8f1ef; --sub:#9db2af; --line:#33423f;
+  --accent:#3cc4af; --accent-ink:#06201c; --warm:#f09255; --good:#6fcf7e; --bad:#ff8a7a;
+  --wood:#5a4a30; --hole:#e8f1ef; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-weight:500;font-size:16px;line-height:1.6;
+  padding-block:16px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+h1{font-size:1.5rem;line-height:1.3;margin:0;font-weight:900;text-wrap:balance}
+.lead{margin:0;color:var(--sub);font-size:.9rem}
+ruby rt{font-size:.5em;font-weight:500}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.tab{font:inherit;font-weight:700;font-size:.85rem;padding:10px 4px;border:2px solid var(--line);background:var(--panel);color:var(--ink);border-radius:12px;cursor:pointer;line-height:1.3}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.panel[hidden]{display:none}
+h2{font-size:1.1rem;margin:0;font-weight:900}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{font:inherit;font-weight:700;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:12px;padding:10px 16px;cursor:pointer;min-height:44px}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn.warm{background:var(--warm);border-color:var(--warm);color:#fff}
+.btn:focus-visible,.tab:focus-visible,.chip:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--warm);outline-offset:2px}
+.notes{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.nb{font:inherit;font-weight:900;font-size:1.05rem;padding:8px 2px;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;cursor:pointer;line-height:1.2}
+.nb small{display:block;font-size:.6rem;font-weight:500;color:var(--sub)}
+.nb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+.nb[aria-pressed="true"] small{color:var(--accent-ink)}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:center}
+@media(max-width:420px){.stage{grid-template-columns:1fr}}
+.big{font-size:3.4rem;line-height:1;font-weight:900;text-align:center}
+.big small{display:block;font-size:.9rem;color:var(--sub);font-weight:700;margin-top:6px}
+svg.rec{width:100%;max-width:150px;height:auto;display:block;margin:0 auto}
+.body{fill:var(--wood);stroke:var(--sub);stroke-width:2}
+.hc{fill:var(--hole);stroke:var(--hole);stroke-width:2}
+.ho{fill:var(--panel);stroke:var(--sub);stroke-width:2}
+.hint{fill:var(--sub);font-size:11px;font-family:var(--f-ui)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-weight:900;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;min-width:44px;height:44px;padding:0 8px;cursor:pointer}
+.chip.hard{border-color:var(--warm)}
+.chip.cur{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip.done{opacity:.55}
+.sub{color:var(--sub);font-size:.85rem;margin:0}
+textarea,select,input[type=text]{font:inherit;color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:8px 10px;width:100%}
+textarea{resize:vertical;min-height:64px}
+input[type=range]{width:100%;accent-color:var(--accent);height:32px}
+.bpm{font-size:3rem;font-weight:900;line-height:1;text-align:center;font-variant-numeric:tabular-nums}
+.dots{display:flex;gap:10px;justify-content:center}
+.dot{width:26px;height:26px;border-radius:50%;background:var(--line)}
+.dot.on{background:var(--accent)}
+.dot.on.first{background:var(--warm)}
+.ladder{display:flex;flex-wrap:wrap;gap:6px}
+.q{font-size:2.6rem;font-weight:900;text-align:center;line-height:1.2}
+.msg{min-height:1.6em;text-align:center;font-weight:700}
+.msg.ok{color:var(--good)}.msg.ng{color:var(--bad)}
+.note{border-left:4px solid var(--warm);padding:4px 12px;font-size:.85rem;color:var(--sub);margin:0}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg .btn{padding:8px 12px;min-height:40px}
+.seg .btn.on{background:var(--accent);color:var(--accent-ink)}
+.seg .btn:not(.on){background:transparent;color:var(--accent)}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>リコーダー れんしゅう<br>「パフ」</h1>
+  <p class="lead">{ゆび}の{図}を{見}て、{音}を{聞}いて、メトロノームに{合}わせて れんしゅうしよう。</p>
+</header>
+
+<div class="tabs" role="tablist" id="tabs">
+  <button class="tab" role="tab" aria-selected="true" data-t="chart"><ruby>指<rt>ゆび</rt></ruby>づかい<br>ずかん</button>
+  <button class="tab" role="tab" aria-selected="false" data-t="steps"><ruby>指<rt>ゆび</rt></ruby>の<br>れんしゅう</button>
+  <button class="tab" role="tab" aria-selected="false" data-t="metro">メトロ<br>ノーム</button>
+  <button class="tab" role="tab" aria-selected="false" data-t="quiz"><ruby>指<rt>ゆび</rt></ruby>づかい<br>クイズ</button>
+</div>
+
+<section class="panel" id="p-chart">
+  <h2>おとを えらぶと <ruby>指<rt>ゆび</rt></ruby>づかいが でるよ</h2>
+  <div class="notes" id="chartNotes"></div>
+  <div class="stage">
+    <svg class="rec" id="chartRec" viewBox="0 0 150 330" aria-label="リコーダーの指づかい"></svg>
+    <div>
+      <div class="big" id="chartBig">ド<small id="chartSm"></small></div>
+      <div class="row" style="justify-content:center;margin-top:10px"><button class="btn" id="chartPlay">おとを <ruby>聞<rt>き</rt></ruby>く</button></div>
+    </div>
+  </div>
+  <p class="note">● くろ＝<ruby>指<rt>ゆび</rt></ruby>で ふさぐ　○ しろ＝あける。<ruby>左<rt>ひだり</rt></ruby>の まるは <ruby>親指<rt>おやゆび</rt></ruby>（うらの あな）。プリントの ず と <ruby>見<rt>み</rt></ruby>くらべてね。</p>
+</section>
+
+<section class="panel" id="p-steps" hidden>
+  <h2><ruby>指<rt>ゆび</rt></ruby>の うごきの れんしゅう</h2>
+  <div class="row">
+    <span class="sub">だんを えらぶ</span>
+    <div class="seg" id="stSeg"></div>
+  </div>
+  <div class="row">
+    <span class="sub">パート</span>
+    <div class="seg" id="ptSeg"></div>
+  </div>
+  <div class="chips" id="chips"></div>
+  <p class="sub">オレンジの ふちは、<ruby>指<rt>ゆび</rt></ruby>が たくさん かわる ところ（4つ いじょう）。ここを ゆっくり れんしゅう。</p>
+  <div class="stage">
+    <svg class="rec" id="stepRec" viewBox="0 0 150 330"></svg>
+    <div>
+      <div class="big" id="stepBig">ド<small id="stepNext"></small></div>
+      <div class="row" style="justify-content:center;margin-top:10px">
+        <button class="btn ghost" id="stPrev" aria-label="まえ">◀</button>
+        <button class="btn" id="stNext">つぎ ▶</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <button class="btn warm" id="stAuto">▶ メトロノームで じどうで すすむ</button>
+    <label class="sub" style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="stSound" checked> おとも ならす</label>
+  </div>
+  <div class="row"><span class="sub">はやさ</span><input type="range" id="stBpm" min="40" max="140" value="60" style="flex:1;min-width:140px"><b id="stBpmV" style="min-width:2.5em">60</b></div>
+  <div class="row" style="border-top:1px solid var(--line);padding-top:12px"><b>おてほん</b><span class="sub">（<ruby>楽譜<rt>がくふ</rt></ruby>の リズムで えんそう）</span></div>
+  <div class="row"><span class="sub">きく パート</span><div class="seg" id="mdSeg"></div></div>
+  <div class="row"><span class="sub">はやさ</span><input type="range" id="mdBpm" min="50" max="140" value="90" style="flex:1;min-width:140px"><b id="mdBpmV" style="min-width:2.5em">90</b></div>
+  <div class="row"><button class="btn warm" id="mdGo">♪ この だんを きく</button><button class="btn warm" id="mdAll">♪ ぜんぶ とおしで きく</button><label class="sub" style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="mdCount" checked> はじめに 4カウント</label></div>
+  <details>
+    <summary class="sub">ドレミを なおす（<ruby>楽譜<rt>がくふ</rt></ruby>と ちがう ときは ここ）</summary>
+    <textarea id="seqEdit" rows="3" aria-label="音の名前"></textarea>
+    <p class="sub">ドレミファソラシを すきまで くぎる。<b>ド'</b> <b>レ'</b> は たかい ド・レ。ひくい ド・レは ふつうの ド・レ。</p>
+    <div class="row"><button class="btn ghost" id="seqReset">もとに もどす</button></div>
+  </details>
+  <p class="note">プリントの <ruby>手書<rt>てが</rt></ruby>きから うつした ドレミです。まちがいが あるかも。<ruby>楽譜<rt>がくふ</rt></ruby>で たしかめて、ちがう ところは なおしてね。おてほんの リズムは <ruby>楽譜<rt>がくふ</rt></ruby>を <ruby>見<rt>み</rt></ruby>て いれましたが、よみまちがいが あるかも。「<ruby>指<rt>ゆび</rt></ruby>の うごき」の じどうおくりは 1つの おとを 1<ruby>拍<rt>はく</rt></ruby>で すすみます。</p>
+</section>
+
+<section class="panel" id="p-metro" hidden>
+  <h2>メトロノーム</h2>
+  <div class="bpm"><span id="mBpm">80</span><small style="font-size:1rem;font-weight:700"> ♩/ぷん</small></div>
+  <input type="range" id="mRange" min="40" max="160" value="80" aria-label="はやさ">
+  <div class="ladder" id="ladder"></div>
+  <div class="row"><span class="sub">1ぱくの かず</span><div class="seg" id="beatSeg"></div></div>
+  <div class="dots" id="dots"></div>
+  <div class="row" style="justify-content:center"><button class="btn" id="mGo" style="min-width:10em">▶ スタート</button></div>
+  <p class="note">プリントの はやさは ♩＝126〜138。まず 60から はじめて、すこしずつ あげていこう。</p>
+</section>
+
+<section class="panel" id="p-quiz" hidden>
+  <h2><ruby>指<rt>ゆび</rt></ruby>づかいクイズ</h2>
+  <p class="sub">おとの なまえを みて、リコーダーの あなを タップして ふさぐ あなを きめよう。</p>
+  <div class="q" id="qName">ド</div>
+  <svg class="rec" id="quizRec" viewBox="0 0 150 330"></svg>
+  <div class="msg" id="qMsg"></div>
+  <div class="row" style="justify-content:center">
+    <button class="btn" id="qCheck">できた！</button>
+    <button class="btn ghost" id="qClear">ぜんぶ あける</button>
+    <button class="btn ghost" id="qHint">ヒント</button>
+    <button class="btn ghost" id="qSkip">パス</button>
+  </div>
+  <p class="sub" style="text-align:center" id="qScore"></p>
+</section>
+</div>
+
+<script>
+(function(){
+/* ruby: {漢字|よみ} is not used here; the page writes ruby tags directly except in lead where {x} is stripped below */
+var lead=document.querySelector('.lead');
+lead.innerHTML=lead.innerHTML.replace(/\{ゆび\}/g,'<ruby>指<rt>ゆび</rt></ruby>').replace(/\{図\}/g,'<ruby>図<rt>ず</rt></ruby>').replace(/\{見\}/g,'<ruby>見<rt>み</rt></ruby>').replace(/\{音\}/g,'<ruby>音<rt>おと</rt></ruby>').replace(/\{聞\}/g,'<ruby>聞<rt>き</rt></ruby>').replace(/\{合\}/g,'<ruby>合<rt>あ</rt></ruby>');
+var $=function(i){return document.getElementById(i)};
+/* ---- fingering (soprano, baroque). 't'=thumb, 1-7 holes; value = closed holes ---- */
+var NOTES=[
+ {k:'ド',lbl:'ド',sub:'ひくい',f:440,c:['t',1,2,3,4,5,6,7],eng:'C5'},
+ {k:'レ',lbl:'レ',sub:'ひくい',f:587.33,c:['t',1,2,3,4,5,6],eng:'D5'},
+ {k:'ミ',lbl:'ミ',sub:'',f:659.26,c:['t',1,2,3,4,5],eng:'E5'},
+ {k:'ファ',lbl:'ファ',sub:'',f:698.46,c:['t',1,2,3,4,6,7],eng:'F5'},
+ {k:'ソ',lbl:'ソ',sub:'',f:783.99,c:['t',1,2,3],eng:'G5'},
+ {k:'ラ',lbl:'ラ',sub:'',f:880,c:['t',1,2],eng:'A5'},
+ {k:'シ',lbl:'シ',sub:'',f:987.77,c:['t',1],eng:'B5'},
+ {k:"ド'",lbl:'ド',sub:'たかい',f:1046.5,c:['t',2],eng:'C6'},
+ {k:"レ'",lbl:'レ',sub:'たかい',f:1174.66,c:[2,3],eng:'D6'}
+];
+NOTES[0].f=523.25;
+var BY={};NOTES.forEach(function(n){BY[n.k]=n});
+/* ---- recorder svg ---- */
+var HOLES={t:[24,98,'s'],1:[75,86,'s'],2:[75,116,'s'],3:[75,146,'s'],4:[75,194,'s'],5:[75,224,'s'],6:[75,254,'d'],7:[75,286,'d']};
+function recSVG(svg,closed,onTap){
+  var s='<path class="body" d="M58 10h34v22h8v230q0 40-12 52h-26q-12-12-12-52V32h8z"/>';
+  s+='<rect x="62" y="34" width="26" height="14" rx="3" fill="none" stroke="var(--sub)" stroke-width="2"/>';
+  Object.keys(HOLES).forEach(function(k){
+    var h=HOLES[k],c=closed.indexOf(k==='t'?'t':+k)>=0,cls=c?'hc':'ho';
+    s+='<g data-h="'+k+'" style="cursor:'+(onTap?'pointer':'default')+'">';
+    if(h[2]==='d'){s+='<circle class="'+cls+'" cx="'+(h[0]-8)+'" cy="'+h[1]+'" r="8"/><circle class="'+cls+'" cx="'+(h[0]+8)+'" cy="'+h[1]+'" r="8"/><rect x="'+(h[0]-26)+'" y="'+(h[1]-18)+'" width="52" height="36" fill="transparent"/>';}
+    else s+='<circle class="'+cls+'" cx="'+h[0]+'" cy="'+h[1]+'" r="'+(k==='t'?12:11)+'"/><circle cx="'+h[0]+'" cy="'+h[1]+'" r="22" fill="transparent"/>';
+    s+='</g>';
+  });
+  s+='<text class="hint" x="2" y="80">おやゆび</text><text class="hint" x="108" y="94">1</text><text class="hint" x="108" y="124">2</text><text class="hint" x="108" y="154">3</text><text class="hint" x="108" y="202">4</text><text class="hint" x="108" y="232">5</text><text class="hint" x="108" y="262">6</text><text class="hint" x="108" y="294">7</text>';
+  svg.innerHTML=s;
+  if(onTap)svg.querySelectorAll('[data-h]').forEach(function(g){g.addEventListener('click',function(){onTap(g.getAttribute('data-h'))})});
+}
+/* ---- audio ---- */
+var AC=null;
+function ctx(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(AC&&AC.state==='suspended')AC.resume();return AC}
+function tone(f,dur,t0){var a=ctx();if(!a)return;t0=t0||a.currentTime;
+  var o=a.createOscillator(),o2=a.createOscillator(),g=a.createGain();
+  o.type='sine';o.frequency.value=f;o2.type='sine';o2.frequency.value=f*2;
+  var g2=a.createGain();g2.gain.value=.08;
+  g.gain.setValueAtTime(0,t0);g.gain.linearRampToValueAtTime(.28,t0+.04);g.gain.setValueAtTime(.28,t0+dur-.08);g.gain.linearRampToValueAtTime(0,t0+dur);
+  o.connect(g);o2.connect(g2);g2.connect(g);g.connect(a.destination);o.start(t0);o2.start(t0);o.stop(t0+dur+.02);o2.stop(t0+dur+.02)}
+function click(first,t0){var a=ctx();if(!a)return;var o=a.createOscillator(),g=a.createGain();
+  o.type='square';o.frequency.value=first?1500:1000;g.gain.setValueAtTime(.18,t0);g.gain.exponentialRampToValueAtTime(.001,t0+.05);
+  o.connect(g);g.connect(a.destination);o.start(t0);o.stop(t0+.06)}
+function nm(n){return n.lbl+(n.sub?'（'+n.sub+'）':'')}
+/* ---- tabs ---- */
+var tabs=document.querySelectorAll('.tab');
+function showTab(t){tabs.forEach(function(b){b.setAttribute('aria-selected',b.dataset.t===t?'true':'false')});
+  ['chart','steps','metro','quiz'].forEach(function(x){$('p-'+x).hidden=x!==t});
+  if(t!=='steps')stopAuto();if(t!=='metro')stopMetro()}
+tabs.forEach(function(b){b.addEventListener('click',function(){showTab(b.dataset.t)})});
+/* ---- chart ---- */
+var cn=NOTES[0];
+var cNotes=$('chartNotes');
+NOTES.forEach(function(n){var b=document.createElement('button');b.className='nb';b.innerHTML=n.lbl+'<small>'+(n.sub||'&nbsp;')+'</small>';b.setAttribute('aria-pressed','false');
+  b.addEventListener('click',function(){cn=n;drawChart();tone(n.f,.9)});n.btn=b;cNotes.appendChild(b)});
+function drawChart(){NOTES.forEach(function(n){n.btn.setAttribute('aria-pressed',n===cn?'true':'false')});
+  recSVG($('chartRec'),cn.c);$('chartBig').firstChild.nodeValue=cn.lbl;$('chartSm').textContent=cn.sub;}
+$('chartPlay').addEventListener('click',function(){tone(cn.f,1)});
+$('chartRec').addEventListener('click',function(){tone(cn.f,.8)});
+drawChart();
+/* ---- steps ---- */
+var DEF=[
+ ["ド' ド' ド' ド' シ ソ ラ ラ ド' ド' ソ ソ","ド' ド' ド' ド' シ ソ ファ ファ ファ ファ ミ ソ"],
+ ["ファ ファ ソ ファ ミ ソ ド' ド' ド' ラ シ ド' レ'","ファ ファ ソ ファ ミ ミ ミ ミ ラ ラ ラ ラ シ"],
+ ["ド' ド' ド' ド' シ ソ ラ ラ ド' ド' ソ ソ","ド' ド' ド' ド' シ ソ ファ ファ ファ ファ ミ ミ"],
+ ["ファ ファ ソ ファ ミ ソ ド' ド' ラ ド' シ レ' ド'","レ レ レ レ ド ミ ミ ミ ラ ラ ソ ファ ミ"]
+];
+var SEQ=DEF.map(function(a){return a.slice()});
+var st=0,pt=0,idx=0,seq=[];
+function parse(t){return t.replace(/[’‘´`]/g,"'").replace(/高([ドレ])/g,"$1'").split(/[\s,、]+/).filter(Boolean).map(function(x){return BY[x]}).filter(Boolean)}
+function diff(a,b){var s={};a.c.forEach(function(x){s[x]=1});var d=0;b.c.forEach(function(x){if(s[x])delete s[x];else d++});return d+Object.keys(s).length}
+function segs(){var s=$('stSeg'),p=$('ptSeg');s.innerHTML='';p.innerHTML='';
+  ['①','②','③','④'].forEach(function(l,i){var b=document.createElement('button');b.className='btn'+(i===st?' on':'');b.textContent=l+'だんめ';b.onclick=function(){st=i;idx=0;loadSeq()};s.appendChild(b)});
+  ['パート1','パート2'].forEach(function(l,i){var b=document.createElement('button');b.className='btn'+(i===pt?' on':'');b.textContent=l;b.onclick=function(){pt=i;idx=0;loadSeq()};p.appendChild(b)})}
+function loadSeq(){seq=parse(SEQ[st][pt]);$('seqEdit').value=SEQ[st][pt];segs();drawStep()}
+function drawStep(){var c=$('chips');c.innerHTML='';
+  seq.forEach(function(n,i){var b=document.createElement('button');var hard=i>0&&diff(seq[i-1],n)>=4;
+    b.className='chip'+(hard?' hard':'')+(i===idx?' cur':'')+(i<idx?' done':'');b.textContent=n.lbl+(n.k.indexOf("'")>0?'′':'');b.title=nm(n);
+    b.onclick=function(){idx=i;drawStep();tone(n.f,.6)};c.appendChild(b)});
+  var n=seq[idx];if(!n){$('stepBig').firstChild.nodeValue='―';$('stepNext').textContent='';recSVG($('stepRec'),[]);return}
+  recSVG($('stepRec'),n.c);$('stepBig').firstChild.nodeValue=n.lbl;
+  var nx=seq[idx+1];$('stepNext').textContent=(n.sub?n.sub+'　':'')+(nx?'つぎ→'+nx.lbl+(nx.sub?'('+nx.sub+')':''):'おしまい')}
+$('seqEdit').addEventListener('input',function(){SEQ[st][pt]=this.value;seq=parse(this.value);if(idx>=seq.length)idx=0;drawStep()});
+$('seqReset').onclick=function(){SEQ[st][pt]=DEF[st][pt];idx=0;loadSeq()};
+$('stNext').onclick=function(){if(idx<seq.length-1)idx++;else idx=0;drawStep();if(seq[idx])tone(seq[idx].f,.6)};
+$('stPrev').onclick=function(){if(idx>0)idx--;drawStep();if(seq[idx])tone(seq[idx].f,.6)};
+$('stBpm').addEventListener('input',function(){$('stBpmV').textContent=this.value;if(autoT){stopAuto();startAuto()}});
+var autoT=null;
+function startAuto(){var ms=60000/+$('stBpm').value;var pos=-1;$('stAuto').textContent='■ とめる';
+  var tick=function(){if(!seq.length)return;pos=(pos+1)%seq.length;idx=pos;drawStep();var n=seq[idx];if(n&&$('stSound').checked)tone(n.f,Math.min(.9,ms/1000*.9))};
+  tick();autoT=setInterval(tick,ms)}
+function stopAuto(){if(autoT){clearInterval(autoT);autoT=null}var b=$('stAuto');if(b)b.textContent='▶ メトロノームで じどうで すすむ'}
+$('stAuto').onclick=function(){autoT?stopAuto():startAuto()};
+loadSeq();
+/* ---- model performance (rhythm read from the score; negative = rest; 1 = quarter) ---- */
+var RH=[[1.5,.5,1,1,2,1,-1,1,1,1,1,3,1],[1,1,1,1,1,1,1.5,.5,1,1,1,1,3,-1],[1.5,.5,1,1,2,1,-1,1,1,1,1,3,1],[1,1,1,1,1,1,1.5,.5,1,1,1,1,3,-1]];
+var md=2,mdT=[],mdOn=false;
+['パート1','パート2','ふたりで'].forEach(function(l,i){var b=document.createElement('button');b.className='btn'+(i===md?' on':'');b.textContent=l;
+  b.onclick=function(){md=i;[].forEach.call($('mdSeg').children,function(x,j){x.classList.toggle('on',j===i)})};$('mdSeg').appendChild(b)});
+$('mdBpm').addEventListener('input',function(){$('mdBpmV').textContent=this.value});
+function timeline(notes,rh){var nr=rh.filter(function(d){return d>0}).length;if(nr!==notes.length)rh=notes.map(function(){return 1});
+  var t=0,i=0,out=[];rh.forEach(function(d){if(d<0){t+=-d;return}out.push({n:notes[i],t:t,d:d,i:i});i++;t+=d});return {ev:out,end:t}}
+function stopMd(){mdOn=false;mdT.forEach(clearTimeout);mdT=[];$('mdGo').textContent='♪ この だんを きく';$('mdAll').textContent='♪ ぜんぶ とおしで きく'}
+function playMd(all){
+  if(mdOn){stopMd();return}
+  stopAuto();var a=ctx();if(!a)return;
+  var spb=60/+$('mdBpm').value,cnt=$('mdCount').checked?4:0,t0=a.currentTime+.15;
+  var parts=md===2?[0,1]:[md],stv=all?[0,1,2,3]:[st],off=cnt;
+  stv.forEach(function(sv){var end=0;
+    parts.forEach(function(p){var tl=timeline(parse(SEQ[sv][p]),RH[sv]);end=Math.max(end,tl.end);
+      tl.ev.forEach(function(e){
+        tone(e.n.f,Math.max(.12,e.d*spb*.92),t0+(off+e.t)*spb);
+        if(p===(md===2?pt:md))mdT.push(setTimeout(function(){st=sv;pt=p;seq=parse(SEQ[sv][p]);idx=e.i;segs();drawStep()},(.15+(off+e.t)*spb)*1000))})});
+    off+=end});
+  for(var k=0;k<cnt;k++)click(k===0,t0+k*spb);
+  mdOn=true;$('mdGo').textContent='■ とめる';$('mdAll').textContent='■ とめる';
+  mdT.push(setTimeout(stopMd,(.3+off*spb)*1000))}
+$('mdGo').onclick=function(){playMd(false)};
+$('mdAll').onclick=function(){playMd(true)};
+/* ---- metronome ---- */
+var bpm=80,beats=4,mOn=false,nextT=0,beat=0,mTimer=null,vis=[];
+function setBpm(v){bpm=Math.max(40,Math.min(160,+v));$('mBpm').textContent=bpm;$('mRange').value=bpm;
+  document.querySelectorAll('#ladder .btn').forEach(function(b){b.classList.toggle('on',+b.dataset.v===bpm)})}
+[60,80,100,120,126,132,138].forEach(function(v){var b=document.createElement('button');b.className='btn ghost';b.dataset.v=v;b.textContent=v;b.onclick=function(){setBpm(v)};$('ladder').appendChild(b)});
+document.querySelector('#ladder').insertAdjacentHTML('afterend','');
+var st2=document.createElement('style');st2.textContent='#ladder .btn.on{background:var(--accent);color:var(--accent-ink)}#ladder .btn{padding:6px 12px;min-height:40px}';document.head.appendChild(st2);
+$('mRange').addEventListener('input',function(){setBpm(this.value)});
+function drawBeats(){var d=$('dots');d.innerHTML='';for(var i=0;i<beats;i++){var e=document.createElement('div');e.className='dot';d.appendChild(e)}}
+[2,3,4].forEach(function(n){var b=document.createElement('button');b.className='btn'+(n===beats?' on':'');b.textContent=n+'ぱく';b.onclick=function(){beats=n;[].forEach.call($('beatSeg').children,function(x){x.classList.remove('on')});b.classList.add('on');drawBeats()};$('beatSeg').appendChild(b)});
+drawBeats();setBpm(80);
+function sched(){var a=ctx();while(nextT<a.currentTime+.15){var b=beat%beats;click(b===0,nextT);vis.push([nextT,b]);beat++;nextT+=60/bpm}
+  mTimer=setTimeout(sched,40)}
+function anim(){if(!mOn)return;var a=ctx();while(vis.length&&vis[0][0]<=a.currentTime){var b=vis.shift()[1];var ds=$('dots').children;for(var i=0;i<ds.length;i++){ds[i].className='dot'+(i===b?' on'+(b===0?' first':''):'')}}requestAnimationFrame(anim)}
+function startMetro(){var a=ctx();if(!a)return;mOn=true;beat=0;vis=[];nextT=a.currentTime+.1;$('mGo').textContent='■ ストップ';sched();anim()}
+function stopMetro(){mOn=false;clearTimeout(mTimer);vis=[];$('mGo').textContent='▶ スタート';drawBeats()}
+$('mGo').onclick=function(){mOn?stopMetro():startMetro()};
+/* ---- quiz ---- */
+var qn=null,qc=[],ok=0,tot=0,lastK='';
+function qNew(){var n;do{n=NOTES[Math.floor(Math.random()*NOTES.length)]}while(n.k===lastK);lastK=n.k;qn=n;qc=[];
+  $('qName').innerHTML=n.lbl+(n.sub?'<small style="font-size:1rem;color:var(--sub)">（'+n.sub+'）</small>':'');$('qMsg').textContent='';$('qMsg').className='msg';qDraw()}
+function qDraw(){recSVG($('quizRec'),qc,function(h){h=h==='t'?'t':+h;var i=qc.indexOf(h);if(i>=0)qc.splice(i,1);else qc.push(h);qDraw()})}
+function same(a,b){return a.length===b.length&&a.every(function(x){return b.indexOf(x)>=0})}
+$('qCheck').onclick=function(){tot++;var m=$('qMsg');
+  if(same(qc,qn.c)){ok++;m.textContent='せいかい！ おとを きいてみよう';m.className='msg ok';tone(qn.f,.9);setTimeout(qNew,1600)}
+  else{m.textContent='おしい！ もういちど ためしてみよう（ヒントも あるよ）';m.className='msg ng'}
+  $('qScore').textContent=ok+'もん せいかい / '+tot+'かい こたえた'};
+$('qClear').onclick=function(){qc=[];qDraw()};
+$('qSkip').onclick=qNew;
+$('qHint').onclick=function(){qc=qn.c.slice();qDraw();$('qMsg').textContent='これが こたえだよ。おぼえたら「ぜんぶ あける」で もういちど！';$('qMsg').className='msg'};
+qNew();
+})();
+</script>
+
+</body></html>
